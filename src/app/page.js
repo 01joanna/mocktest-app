@@ -1,26 +1,16 @@
-'use client'
-import { loadPodcasts } from "./services/Api";
-import { useEffect, useState } from "react";
+// import PodcastDescription from "./components/PodcastDescription/PodcastDescription";
+// import EpisodesTable from "./components/EpisodesTable/EpisodesTable";
+import PodcastList from "./components/PodcastList/PodcastList";
+import SearchBar from "./components/SearchBar/SearchBar";
 
 export default function Home() {
 
-const [data, setData] = useState([]);
-useEffect(() => {
-  const loadedData = async() => {
-    const podcasts = await loadPodcasts();
-    setData(podcasts);
-  }
-  loadedData();
-}, []);
-
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <h1>Hola fans!</h1>
-      <ul>
-        {data?.map((item) => (
-          <li key={item.id}>{item.title.label}</li>
-        ))}
-      </ul>
+    <main className="flex relative w-screen flex-col justify-center bg-white items-center">
+      <section className="flex absolute top-4 right-48 flex-row gap-2">
+        <SearchBar />
+      </section>
+      <PodcastList />
     </main>
   );
 }
